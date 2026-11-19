@@ -19,6 +19,7 @@
 
 ## Future / Postponed
 
+- [ ] Consider structured installation hints when a consumer needs them.
 - [ ] Consider additional schemas when concrete consumers require them.
 
 ## Deferred / Under Consideration
