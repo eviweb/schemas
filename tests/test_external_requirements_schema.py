@@ -57,3 +57,35 @@ def test_external_requirements_simple_extraction_method_is_accepted(validator, m
         ],
     }
     assert list(validator.iter_errors(manifest)) == []
+
+
+@pytest.mark.parametrize("custom_value, is_valid", [("enabled", True), (42, False)])
+def test_complementary_schema_custom_field_validates_independently(validator, custom_value, is_valid):
+    manifest = {
+        "schemaVersion": 1,
+        "requirements": [{"id": "tool", "executable": {"candidates": ["tool"]}, "clientMode": custom_value}],
+    }
+    client_schema = {
+        "properties": {
+            "requirements": {"items": {"properties": {"clientMode": {"type": "string"}}}}
+        }
+    }
+    assert validator.is_valid(manifest)
+    assert Draft202012Validator(client_schema).is_valid(manifest) is is_valid
+
+
+def test_optional_property_typo_is_accepted_as_custom_field(validator):
+    manifest = {
+        "schemaVersion": 1,
+        "requirements": [{"id": "tool", "executable": {"candidates": ["tool"]}, "descripton": "Typo"}],
+    }
+    assert validator.is_valid(manifest)
+
+
+@pytest.mark.parametrize("field,value", [("name", 42), ("description", ""), ("documentationUrl", "not a uri")])
+def test_optional_shared_property_invalid_value_is_rejected(validator, field, value):
+    manifest = {
+        "schemaVersion": 1,
+        "requirements": [{"id": "tool", "executable": {"candidates": ["tool"]}, field: value}],
+    }
+    assert not validator.is_valid(manifest)

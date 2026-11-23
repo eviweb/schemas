@@ -47,6 +47,8 @@ The schema validates all shared properties when present, including optional ones
 
 The schema does not enforce uniqueness of `id` across requirement objects, authorize execution or installation, or verify that a documentation URI resolves. `format` checks for URI syntax depend on validator configuration; the test suite enables them explicitly.
 
+An implementation can validate the same manifest with its own complementary schema to check custom fields. Both validations must succeed for the manifest to satisfy both schemas. Consumers remain responsible for detecting duplicate IDs and for any stricter checks they require.
+
 ## Local validation
 
 Install [uv](https://docs.astral.sh/uv/) and run `tests/run-tests.sh` from the repository root. The runner installs the pinned test dependencies, checks the schema against the Draft 2020-12 metaschema, and validates positive and negative examples offline. Schema files and examples are read locally; dependency installation may require network access on the first run.
