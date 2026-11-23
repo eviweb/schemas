@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "requirements": [
+    {
+      "id": "example-tool",
+      "name": "Example Tool",
+      "description": "Provides an example capability.",
+      "executable": {"candidates": ["example-tool", "/opt/example/tool"]},
+      "version": {
+        "minimum": "2.4.0",
+        "arguments": ["version"],
+        "outputStream": "stdout",
+        "extraction": {"method": "after-prefix", "prefix": "version: "},
+        "comparison": "semver"
+      },
+      "documentationUrl": "https://example.org/tool"
+    },
+    {
+      "id": "json-tool",
+      "executable": {"candidates": ["json-tool"]},
+      "version": {
+        "arguments": [],
+        "outputStream": "stderr",
+        "extraction": {"method": "json-property", "property": "tool.version"}
+      }
+    }
+  ]
+}

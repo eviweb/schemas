@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "External requirements manifest",
+  "description": "Common structure for describing external executable requirements.",
+  "type": "object",
+  "required": ["schemaVersion", "requirements"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "minLength": 1,
+      "format": "uri-reference",
+      "description": "Optional reference used by compatible editors and validators."
+    },
+    "schemaVersion": {
+      "const": 1,
+      "description": "Major version of the manifest structure."
+    },
+    "requirements": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/requirement"}
+    }
+  },
+  "$defs": {
+    "requirement": {
+      "type": "object",
+      "required": ["id", "executable"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+          "description": "Stable lowercase kebab-case identifier within this manifest."
+        },
+        "name": {"type": "string", "minLength": 1},
+        "description": {"type": "string", "minLength": 1},
+        "executable": {"$ref": "#/$defs/executable"},
+        "version": {"$ref": "#/$defs/version"},
+        "documentationUrl": {
+          "type": "string",
+          "minLength": 1,
+          "format": "uri"
+        }
+      }
+    },
+    "executable": {
+      "type": "object",
+      "required": ["candidates"],
+      "properties": {
+        "candidates": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1},
+          "description": "Ordered executable names or absolute paths."
+        }
+      }
+    },
+    "version": {
+      "type": "object",
+      "required": ["arguments", "outputStream", "extraction"],
+      "properties": {
+        "minimum": {"type": "string", "minLength": 1},
+        "arguments": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "outputStream": {"enum": ["stdout", "stderr"]},
+        "extraction": {"$ref": "#/$defs/extraction"},
+        "comparison": {"enum": ["numeric-segments", "semver"]}
+      },
+      "dependentRequired": {"minimum": ["comparison"]}
+    },
+    "extraction": {
+      "type": "object",
+      "required": ["method"],
+      "properties": {
+        "method": {
+          "enum": [
+            "entire-output",
+            "first-numeric-token",
+            "last-numeric-token",
+            "after-prefix",
+            "json-property"
+          ]
+        },
+        "prefix": {"type": "string", "minLength": 1},
+        "property": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"method": {"const": "after-prefix"}}},
+          "then": {"required": ["prefix"]}
+        },
+        {
+          "if": {"properties": {"method": {"const": "json-property"}}},
+          "then": {"required": ["property"]}
+        }
+      ]
+    }
+  }
+}

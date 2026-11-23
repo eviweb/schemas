@@ -1,0 +1,1 @@
+{"schemaVersion": 1, "requirements": [{"id": "tool", "executable": {"candidates": ["tool"]}, "version": {"minimum": "2.0", "arguments": [], "outputStream": "stdout", "extraction": {"method": "entire-output"}}}]}

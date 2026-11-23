@@ -7,12 +7,12 @@
 - [x] Initialize project documentation and repository configuration.
 - [ ] Agree on project ownership, maintenance and publication policy.
 
-### External dependencies schema
+### External requirements schema
 
 - [ ] Define the manifest contract and consumer requirements.
 - [ ] Define compatibility, schema identity and publication policies.
-- [ ] Implement the schema and validation fixtures using test-driven development.
-- [ ] Document usage, semantics and limitations.
+- [x] Implement the initial schema and validation fixtures using test-driven development.
+- [x] Document the schema, usage and validation boundaries.
 - [ ] Set up and verify continuous integration.
 
 ---
