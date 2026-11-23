@@ -89,3 +89,33 @@ def test_optional_shared_property_invalid_value_is_rejected(validator, field, va
         "requirements": [{"id": "tool", "executable": {"candidates": ["tool"]}, field: value}],
     }
     assert not validator.is_valid(manifest)
+
+
+@pytest.mark.parametrize(
+    "version",
+    [
+        {"outputStream": "stdout", "extraction": {"method": "entire-output"}},
+        {"arguments": [], "extraction": {"method": "entire-output"}},
+        {"arguments": [12], "outputStream": "stdout", "extraction": {"method": "entire-output"}},
+        {"arguments": [], "outputStream": "both", "extraction": {"method": "entire-output"}},
+        {"arguments": [], "outputStream": "stdout", "extraction": {"method": "json-property"}},
+        {"arguments": [], "outputStream": "stdout", "extraction": {"method": "after-prefix", "prefix": ""}},
+        {"arguments": [], "outputStream": "stdout", "extraction": {"method": "entire-output"}, "comparison": "unknown"},
+        {"arguments": [], "outputStream": "stdout", "extraction": {"method": "entire-output"}, "minimum": "", "comparison": "semver"},
+    ],
+)
+def test_version_invalid_declaration_is_rejected(validator, version):
+    manifest = {"schemaVersion": 1, "requirements": [{"id": "tool", "executable": {"candidates": ["tool"]}, "version": version}]}
+    assert not validator.is_valid(manifest)
+
+
+@pytest.mark.parametrize("comparison", ["numeric-segments", "semver"])
+def test_version_minimum_with_supported_comparison_is_accepted(validator, comparison):
+    manifest = {"schemaVersion": 1, "requirements": [{"id": "tool", "executable": {"candidates": ["tool"]}, "version": {"arguments": [], "outputStream": "stderr", "extraction": {"method": "entire-output"}, "minimum": "1.0", "comparison": comparison}}]}
+    assert validator.is_valid(manifest)
+
+
+@pytest.mark.parametrize("candidates", [[""], [42], "tool"])
+def test_executable_invalid_candidates_are_rejected(validator, candidates):
+    manifest = {"schemaVersion": 1, "requirements": [{"id": "tool", "executable": {"candidates": candidates}}]}
+    assert not validator.is_valid(manifest)
