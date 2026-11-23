@@ -34,6 +34,7 @@
         "description": {"type": "string", "minLength": 1},
         "executable": {"$ref": "#/$defs/executable"},
         "version": {"$ref": "#/$defs/version"},
+        "provisioning": {"$ref": "#/$defs/provisioning"},
         "documentationUrl": {
           "type": "string",
           "minLength": 1,
@@ -51,6 +52,25 @@
           "uniqueItems": true,
           "items": {"type": "string", "minLength": 1},
           "description": "Ordered executable names or absolute paths."
+        }
+      }
+    },
+    "provisioning": {
+      "type": "object",
+      "required": ["sources"],
+      "properties": {
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "required": ["provider", "reference"],
+            "properties": {
+              "provider": {"type": "string", "minLength": 1},
+              "reference": {"type": "string", "minLength": 1}
+            }
+          }
         }
       }
     },

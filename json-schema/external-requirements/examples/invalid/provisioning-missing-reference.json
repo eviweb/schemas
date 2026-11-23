@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "requirements": [
+    {
+      "id": "zbar",
+      "executable": {"candidates": ["zbarimg"]},
+      "provisioning": {"sources": [{"provider": "apt"}]}
+    }
+  ]
+}

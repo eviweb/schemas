@@ -16,6 +16,7 @@
 - [x] Test complementary schema validation and document optional property limitations.
 - [x] Add contract boundary tests for executable candidates and version declarations.
 - [x] Document initial compatibility expectations and commit-based references.
+- [x] Add optional provisioning sources for executable requirements.
 - [ ] Agree on the canonical schema identity before publication.
 - [ ] Set up and verify continuous integration.
 
@@ -23,7 +24,6 @@
 
 ## Future / Postponed
 
-- [ ] Consider structured installation hints when a consumer needs them.
 - [ ] Consider additional schemas when concrete consumers require them.
 
 ## Deferred / Under Consideration

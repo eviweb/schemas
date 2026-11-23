@@ -119,3 +119,14 @@ def test_version_minimum_with_supported_comparison_is_accepted(validator, compar
 def test_executable_invalid_candidates_are_rejected(validator, candidates):
     manifest = {"schemaVersion": 1, "requirements": [{"id": "tool", "executable": {"candidates": candidates}}]}
     assert not validator.is_valid(manifest)
+
+
+@pytest.mark.parametrize("provisioning", [None, {}, {"sources": []}, {"sources": [{}]}, {"sources": [{"provider": "apt"}]}, {"sources": [{"reference": "tool"}]}, {"sources": [{"provider": "", "reference": "tool"}]}, {"sources": [{"provider": "apt", "reference": ""}]}, {"sources": [{"provider": "apt", "reference": "tool"}, {"provider": "apt", "reference": "tool"}]}])
+def test_provisioning_invalid_sources_are_rejected(validator, provisioning):
+    manifest = {"schemaVersion": 1, "requirements": [{"id": "tool", "executable": {"candidates": ["tool"]}, "provisioning": provisioning}]}
+    assert not validator.is_valid(manifest)
+
+
+def test_provisioning_multiple_sources_and_custom_fields_are_accepted(validator):
+    manifest = {"schemaVersion": 1, "requirements": [{"id": "tool", "executable": {"candidates": ["tool"]}, "provisioning": {"sources": [{"provider": "apt", "reference": "tool", "clientField": 1}, {"provider": "custom", "reference": "registry/tool"}]}}]}
+    assert validator.is_valid(manifest)

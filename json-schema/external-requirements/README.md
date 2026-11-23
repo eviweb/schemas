@@ -21,9 +21,20 @@ Each requirement has the following shared properties:
 | `name` | No | Non-empty display name. `id` can be used as a label when it is absent. |
 | `description` | No | Non-empty description of the executable's purpose in the project. |
 | `version` | No | Version detection information described below. |
+| `provisioning` | No | Object describing one or more installation sources. |
 | `documentationUrl` | No | Non-empty absolute URI to documentation. |
 
 `executable.candidates` is a required, non-empty, ordered array of distinct, non-empty strings. Each string indicates an executable name or absolute path. The schema does not validate path syntax or executable availability.
+
+When present, `provisioning.sources` is a required non-empty array. Each source requires a non-empty `provider` and provider-specific `reference`. The provider list is open. Identical source objects are rejected; sources with the same provider and reference but different additional properties are not detected as duplicates.
+
+```json
+"provisioning": {
+  "sources": [{"provider": "apt", "reference": "zbar-tools"}]
+}
+```
+
+Sources identify installation options; they do not authorize installation or establish that a package is available. Consumers choose providers and their priority, verify references, and manage authorization, privileges, previews, failure handling and subsequent executable checks. The schema does not enforce these actions or infer a package from an executable name.
 
 When `version` is present, `arguments` is a required array of strings and may be empty. `outputStream` is required and accepts `stdout` or `stderr`. `extraction` is required. `minimum` is an optional non-empty string. When `minimum` is present, `comparison` is required. When present, `comparison` accepts `numeric-segments` or `semver`. These values indicate version formats; the schema does not compare actual versions or parse command output.
 
