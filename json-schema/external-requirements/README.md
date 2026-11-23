@@ -49,6 +49,16 @@ The schema does not enforce uniqueness of `id` across requirement objects, autho
 
 An implementation can validate the same manifest with its own complementary schema to check custom fields. Both validations must succeed for the manifest to satisfy both schemas. Consumers remain responsible for detecting duplicate IDs and for any stricter checks they require.
 
+## Compatibility and schema references
+
+Within manifest major version 1, new schema revisions aim to continue accepting manifests valid under previous published v1 revisions. Changes that reject previously valid manifests or change the meaning of shared fields require a new major version. Compare changes against representative earlier examples before publication.
+
+Forward compatibility is not guaranteed: an older validator can reject a new enum value even if a newer v1 schema accepts it. Adding a shared property can also conflict with a custom property already used under that name. Review additions against known consumers and document their impact. Consumers choose which methods and custom properties to support.
+
+`schemaVersion` identifies the manifest's major format, while the repository release and Git commit identify a specific schema revision. For reproducible validation, use a full commit ID and the path at that commit. The release registry will distinguish the first published version from any later recommended revision. These GitHub references depend on the repository and referenced commit remaining available.
+
+The canonical `$id` is still under consideration; no unpublished identifier is claimed. Relative references inside a schema resolve using its base URI, so identifier and retrieval behavior must be checked before publication.
+
 ## Local validation
 
 Install [uv](https://docs.astral.sh/uv/) and run `tests/run-tests.sh` from the repository root. The runner installs the pinned test dependencies, checks the schema against the Draft 2020-12 metaschema, and validates positive and negative examples offline. Schema files and examples are read locally; dependency installation may require network access on the first run.

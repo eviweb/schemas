@@ -15,7 +15,8 @@
 - [x] Document the schema, usage and validation boundaries.
 - [x] Test complementary schema validation and document optional property limitations.
 - [x] Add contract boundary tests for executable candidates and version declarations.
-- [ ] Agree on compatibility and schema identity before publication.
+- [x] Document initial compatibility expectations and commit-based references.
+- [ ] Agree on the canonical schema identity before publication.
 - [ ] Set up and verify continuous integration.
 
 ---
