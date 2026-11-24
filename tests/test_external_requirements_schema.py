@@ -3,11 +3,22 @@ from pathlib import Path
 
 import pytest
 from jsonschema import Draft202012Validator, FormatChecker
+from referencing import Registry, Resource
 
 
 SCHEMA_DIRECTORY = Path(__file__).resolve().parents[1] / "json-schema" / "external-requirements"
 SCHEMA_PATH = SCHEMA_DIRECTORY / "external-requirements.schema.json"
 FORMAT_CHECKER = FormatChecker()
+
+
+def test_schema_canonical_identity_resolves_registered_local_schema():
+    schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+    schema_id = "https://schemas.eviweb.fr/external-requirements/1.0.0/schema.json"
+    assert schema.get("$id") == schema_id
+    registry = Registry().with_resource(schema_id, Resource.from_contents(schema))
+    validator = Draft202012Validator({"$ref": schema_id}, registry=registry)
+    assert validator.is_valid({"schemaVersion": 1, "requirements": []})
+    assert not validator.is_valid({"schemaVersion": 2, "requirements": []})
 
 
 @pytest.fixture(scope="module")

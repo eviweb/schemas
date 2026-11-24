@@ -2,7 +2,7 @@
 
 This [Draft 2020-12 schema](external-requirements.schema.json) validates the shared structure of `external-requirements.json`. Version 1 describes external executable requirements. It supports validation and authoring assistance in compatible IDEs. It does not execute probes or check whether an executable exists.
 
-The schema has no published `$id` yet. The repository is private during initial development. A published identifier and an immutable URL containing a full Git commit ID must be selected and tested before release. The optional manifest `$schema` property can contain a relative URI reference during local development.
+The schema declares the canonical identifier `https://schemas.eviweb.fr/external-requirements/1.0.0/schema.json`. This identifies schema revision 1.0.0 independently of the repository release version. The domain is not configured for schema retrieval; the identifier alone does not make the file available over HTTP. A GitHub URL containing a full commit ID must be selected and tested before release. The optional manifest `$schema` property can contain a relative URI reference during local development.
 
 ## Manifest properties
 
@@ -68,7 +68,7 @@ Forward compatibility is not guaranteed: an older validator can reject a new enu
 
 `schemaVersion` identifies the manifest's major format, while the repository release and Git commit identify a specific schema revision. For reproducible validation, use a full commit ID and the path at that commit. The release registry will distinguish the first published version from any later recommended revision. These GitHub references depend on the repository and referenced commit remaining available.
 
-The canonical `$id` is still under consideration; no unpublished identifier is claimed. Relative references inside a schema resolve using its base URI, so identifier and retrieval behavior must be checked before publication.
+The canonical `$id` identifies this schema revision and supplies its base URI. A future revision with different constraints should use a distinct identifier. Register a local copy under this identifier when resolving references offline. Retrieval and editor behavior must be checked before publication.
 
 ## Local validation
 

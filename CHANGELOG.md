@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Add a canonical identifier for the initial external requirements schema revision.
 - Add GitHub Actions validation for schema tests.
 - Add optional provisioning sources with provider and exact reference fields.
 - Initialize project documentation and repository configuration.
