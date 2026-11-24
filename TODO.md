@@ -17,8 +17,9 @@
 - [x] Add contract boundary tests for executable candidates and version declarations.
 - [x] Document initial compatibility expectations and commit-based references.
 - [x] Add optional provisioning sources for executable requirements.
-- [ ] Agree on the canonical schema identity before publication.
-- [ ] Verify the GitHub Actions workflow after it runs on the branch.
+- [x] Define the canonical schema identity for the initial revision.
+- [x] Verify the GitHub Actions workflow after it runs on the branch.
+- [ ] Verify schema retrieval and editor integration before publication.
 
 ---
 
