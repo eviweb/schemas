@@ -7,19 +7,23 @@
 - [x] Initialize project documentation and repository configuration.
 - [ ] Agree on project ownership, maintenance and publication policy.
 
-### External dependencies schema
+### External requirements schema
 
 - [ ] Define the manifest contract and consumer requirements.
 - [ ] Define compatibility, schema identity and publication policies.
-- [ ] Implement the schema and validation fixtures using test-driven development.
-- [ ] Document usage, semantics and limitations.
-- [ ] Set up and verify continuous integration.
+- [x] Implement the initial schema and validation fixtures using test-driven development.
+- [x] Document the schema, usage and validation boundaries.
+- [x] Test complementary schema validation and document optional property limitations.
+- [x] Add contract boundary tests for executable candidates and version declarations.
+- [x] Document initial compatibility expectations and commit-based references.
+- [x] Add optional provisioning sources for executable requirements.
+- [ ] Agree on the canonical schema identity before publication.
+- [ ] Verify the GitHub Actions workflow after it runs on the branch.
 
 ---
 
 ## Future / Postponed
 
-- [ ] Consider structured installation hints when a consumer needs them.
 - [ ] Consider additional schemas when concrete consumers require them.
 
 ## Deferred / Under Consideration

@@ -1,0 +1,1 @@
+{"schemaVersion": 1, "requirements": [{"id": "tool", "executable": {"candidates": ["tool"]}, "version": {"arguments": [], "outputStream": "stdout", "extraction": {"method": "after-prefix"}}}]}

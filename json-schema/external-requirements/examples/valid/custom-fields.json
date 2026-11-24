@@ -1,0 +1,15 @@
+{
+  "$schema": "../../external-requirements.schema.json",
+  "schemaVersion": 1,
+  "requirements": [
+    {
+      "id": "example-tool",
+      "executable": {
+        "candidates": ["example-tool"],
+        "clientPathSetting": "example/path"
+      },
+      "clientMetadata": {"enabled": true}
+    }
+  ],
+  "clientProject": "example"
+}
