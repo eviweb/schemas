@@ -18,7 +18,7 @@
 - [x] Document initial compatibility expectations and commit-based references.
 - [x] Add optional provisioning sources for executable requirements.
 - [ ] Agree on the canonical schema identity before publication.
-- [ ] Set up and verify continuous integration.
+- [ ] Verify the GitHub Actions workflow after it runs on the branch.
 
 ---
 

@@ -6,6 +6,8 @@ The first schema describes an [external requirements manifest](json-schema/exter
 
 Run `tests/run-tests.sh` to validate the schema and its examples. This requires [uv](https://docs.astral.sh/uv/) and downloads pinned Python test dependencies on the first run.
 
+GitHub Actions runs the same validation on pushes, pull requests and manual requests.
+
 ## Project profile
 
 This project uses the strict Git workflow: changes go through pull requests, with required checks and reviews before merging.

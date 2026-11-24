@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Add GitHub Actions validation for schema tests.
 - Add optional provisioning sources with provider and exact reference fields.
 - Initialize project documentation and repository configuration.
 - Add a Draft 2020-12 schema for external executable requirements, validation fixtures and tests.
