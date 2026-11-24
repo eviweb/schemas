@@ -10,6 +10,14 @@ Run `tests/run-tests.sh` to validate the schema and its examples. This requires 
 
 GitHub Actions runs the same validation on pushes, pull requests and manual requests.
 
+## Schema revisions
+
+| Schema | Revision | Git reference |
+| --- | --- | --- |
+| External requirements | 1.0.0 | [Schema at commit `19740cd145dec6eb45a587484efbbfb0199e6a84`](https://raw.githubusercontent.com/eviweb/schemas/19740cd145dec6eb45a587484efbbfb0199e6a84/json-schema/external-requirements/external-requirements.schema.json) |
+
+The GitHub URL requires repository access while the repository is private. The schema revision is independent of the repository release version.
+
 ## Project profile
 
 This project uses the strict Git workflow: changes go through pull requests, with required checks and reviews before merging.

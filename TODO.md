@@ -19,7 +19,8 @@
 - [x] Add optional provisioning sources for executable requirements.
 - [x] Define the canonical schema identity for the initial revision.
 - [x] Verify the GitHub Actions workflow after it runs on the branch.
-- [ ] Verify schema retrieval and editor integration before publication.
+- [x] Verify local schema validation and completion in VS Code and Zed.
+- [ ] Verify the public GitHub schema URL and editor integration after publication.
 
 ---
 
